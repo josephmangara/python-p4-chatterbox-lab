@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 
 from random import choice as rc
-
 from faker import Faker
-
 from app import app
 from models import db, Message
+from datetime import datetime
 
 fake = Faker()
 
@@ -23,6 +22,8 @@ def make_messages():
         message = Message(
             body=fake.sentence(),
             username=rc(usernames),
+            created_at=fake.date_time_this_decade(), 
+            updated_at=fake.date_time_this_decade(),
         )
         messages.append(message)
 
